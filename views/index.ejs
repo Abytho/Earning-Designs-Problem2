@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Data</title>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+        </style>
+</head>
+<body>
+    <div>
+        <h1>Data</h1>
+        <a href="/create" class="btn btn-primary">Create New Record</a>
+    </div>
+    <br>
+    <div>
+        <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col">Item For Sale</th>
+                <th scope="col">Item Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Edit Action</th>
+                <th scope="col">Delete Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(typeof(records) !='undefined' ) { %>
+                    <% records.forEach(function(rec) { %>
+            <tr>
+                <td><%=rec.title %></td>
+                <td><%=rec.description %></td>
+                <td><%=rec.category %></td>
+                <td><%=rec.itemForSale %></td>
+                <td><%=rec.itemPrice %></td>
+                <td><img src="/assets/<%=rec.image %>" alt="image" width="100px"></td>
+                <td><a href="/edit/<%=rec._id %>" class="btn btn-primary">Edit</a></td>
+                <td><a href="/delete/<%=rec._id %>" class="btn btn-danger">Delete</a></td>
+            </tr>
+
+            <% }) %>
+            <% } else { %>
+                <h1>There is no records</h1>
+            <% } %>
+        </tbody>
+        </table>
+    </div>
+</body>
+</html>
